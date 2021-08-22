@@ -10,10 +10,7 @@ const validateCustomer = [
       min: 2,
     })
     .withMessage("Full name must have more than two characters"),
-  check("phone_number")
-    .not()
-    .isEmpty()
-    .withMessage("Phone Nnumber is required"),
+  check("phone_number").not().isEmpty().withMessage("Phone number is required"),
   check("email_id")
     .trim()
     .not()

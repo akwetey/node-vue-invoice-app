@@ -10,5 +10,11 @@
     "express-validator": "^6.12.1",
     "mysql": "^2.18.1",
     "uuid": "^8.3.2"
+  },
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
