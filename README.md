@@ -6,4 +6,4 @@
 
 ###### Create env to setup environment variables.
 
-###### yarn dev to start local server.
+###### Yarn dev to start local server.
