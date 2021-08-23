@@ -1,6 +1,18 @@
-const CustomerService = require("../DB/customerService");
+const CustomerService = require("../db/customerService");
 
 class CustomerController {
+  // get all customers
+  static async index(_, res) {
+    try {
+      const allCustomers = await CustomerService.getAllCustomers();
+      res.status(200).json({
+        data: allCustomers,
+      });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  }
+
   // Create customer
   static async store(req, res) {
     try {
@@ -10,21 +22,9 @@ class CustomerController {
         data: newCustomer,
       });
     } catch (err) {
-      console.log(err);
       if (err.code === "ER_DUP_ENTRY") {
         return res.status(400).json({ message: err.message });
       }
-      res.status(500).json({ message: err.message });
-    }
-  }
-  // get all customers
-  static async index(_, res) {
-    try {
-      const allCustomers = await CustomerService.getAllCustomers();
-      res.status(200).json({
-        data: allCustomers,
-      });
-    } catch (err) {
       res.status(500).json({ message: err.message });
     }
   }
