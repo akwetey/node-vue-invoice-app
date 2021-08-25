@@ -1,0 +1,27 @@
+@import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+.app-header {
+  height: 75px;
+  background: #336399;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.app-sidebar {
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  background: #2f3740;
+  top: 0;
+  left: 0;
+  padding-top: 75px;
+}
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu-item {
+}
