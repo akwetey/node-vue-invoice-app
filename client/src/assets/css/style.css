@@ -1,7 +1,7 @@
 @import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
 .app-header {
-  height: 75px;
+  height: 60px;
   background: #336399;
   position: fixed;
   top: 0;
@@ -23,5 +23,61 @@
   padding: 0;
 }
 
-.sidebar-menu-item {
+.search-bg {
+  background-color: #353e48;
+  border-radius: 2rem;
+  border-color: #353e48;
+}
+
+.text-bg {
+  color: #606a75;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.border-b {
+  border-bottom: 1px solid #3a424d;
+}
+
+.mr-4 {
+  margin-top: 4rem;
+  margin-right: 4rem;
+}
+
+.rounded-button {
+  width: 50px;
+  height: 50px;
+  background: #ff64a4;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+  text-decoration: none;
+}
+
+.font-size {
+  font-size: small;
+  font-weight: 500;
+  color: #959aa0;
+}
+
+.btn-grey {
+  background-color: #f3f4f6;
+  color: #66a7ff;
+}
+
+.input-group span {
+  color: #9599a0;
+}
+.bg-footer {
+  background-color: #eef0f2;
+}
+.btn-footer {
+  background-color: #66a7ff;
+  color: #f7faff;
+  font-size: 12px;
+  font-weight: 500;
 }
