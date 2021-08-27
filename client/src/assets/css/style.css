@@ -21,6 +21,8 @@
 .sidebar-menu {
   list-style: none;
   padding: 0;
+  overflow-y: auto;
+  max-height: 700px;
 }
 
 .search-bg {
@@ -32,7 +34,12 @@
 .text-bg {
   color: #606a75;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 13px;
+}
+.text-customer {
+  color: #999da2;
+  font-weight: 600;
+  font-size: 13px;
 }
 
 .border-b {
@@ -59,14 +66,23 @@
 }
 
 .font-size {
-  font-size: small;
+  font-size: 13px;
   font-weight: 500;
   color: #959aa0;
+}
+
+.mt {
+  margin-top: 3px;
 }
 
 .btn-grey {
   background-color: #f3f4f6;
   color: #66a7ff;
+  background-image: url("../images/skip-icon.png");
+  background-repeat: no-repeat;
+  background-position: 55px;
+  padding-right: 2rem;
+  padding-left: 1rem;
 }
 
 .input-group span {
@@ -80,4 +96,123 @@
   color: #f7faff;
   font-size: 12px;
   font-weight: 500;
+}
+
+.btn-close-modal {
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  padding: 0.25em 0.25em;
+  color: #000;
+  background: transparent url("../images/close-btn@3x.png") center/1em auto
+    no-repeat;
+  border: 0;
+  border-radius: 0.25rem;
+  opacity: 0.5;
+}
+
+.text-bg-fullname {
+  color: #62a0f2;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.sidebar-menu-item {
+  cursor: pointer;
+}
+
+.app-content {
+  margin-left: 240px;
+  margin-top: 85px;
+  padding: 0 15px 10px 15px;
+}
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+  border-bottom: 1px solid #f0f1f4 !important;
+  border-width: 0;
+}
+
+.border-t {
+  border-top: 1px solid #f0f1f4;
+}
+
+.table-header {
+  color: #c4c9d2;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.text-left {
+  text-align: right;
+}
+
+li a {
+  text-decoration: none;
+}
+.active {
+  background: #404b57;
+}
+
+.row-border {
+  border-bottom: 1px solid #f0f1f4 !important;
+  border-width: 0;
+}
+
+.inv-text {
+  color: #767e8e;
+}
+
+.btn-print {
+  background-color: #fff;
+  color: #83b8ff;
+  background-image: url("../images/printer-blue.png");
+  background-repeat: no-repeat;
+  background-position: 75px;
+  border: 1px solid #83b8ff;
+  padding-right: 4rem;
+  padding-left: 1rem;
+}
+.btn-print:hover {
+  color: #83b8ff;
+}
+
+.btn-add {
+  border: 1px solid #83b8ff;
+  padding: 1rem;
+  background: url("../images/enter-icon@3x.png") center/1em auto no-repeat;
+}
+
+.btn-remove {
+  border: 1px solid #83b8ff;
+  padding: 1rem;
+  background: url("../images/close-btn@3x.png") center/1em auto no-repeat;
+}
+
+.btn-edit {
+  padding: 1rem;
+  background: url("../images/edit@3x.png") center/1em auto no-repeat;
+}
+
+.btn-invoice {
+  padding: 1rem;
+  background-image: url("../images/plus-white.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.input-search {
+  background-image: url("../images/search-icon.png");
+  background-repeat: no-repeat;
+  background-position: 5px;
+  padding-right: 4rem;
+  padding-left: 1rem;
+}
+.input-search:placeholder-shown {
+  padding-left: 2rem;
 }

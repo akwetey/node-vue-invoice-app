@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Invoice from "../views/Invoice.vue";
 
 Vue.use(VueRouter);
 
@@ -9,6 +10,13 @@ const routes = [
     path: "/",
     name: "home",
     component: Home,
+    children: [
+      {
+        path: "/invoice/:guid",
+        name: "invoice",
+        component: Invoice,
+      },
+    ],
   },
 ];
 

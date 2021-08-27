@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <Sidebar :data="data" />
+    <Sidebar :data="getAllInvoices" />
     <div class="app-content">
       <div class="container-fluid">
         <router-view />
@@ -13,7 +13,6 @@
 <script>
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import axios from "axios";
 export default {
   name: "Main",
   components: { Sidebar, Header },
@@ -22,12 +21,14 @@ export default {
       data: [],
     };
   },
-  async created() {
+  computed: {
+    getAllInvoices() {
+      return this.$store.getters.getAllInvoices;
+    },
+  },
+  async mounted() {
     try {
-      const { data: res } = await axios.get(
-        "http://localhost:3000/api/invoices"
-      );
-      this.data = res.data;
+      await this.$store.dispatch("getInvoices");
     } catch (error) {
       console.log(error);
     }

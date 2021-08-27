@@ -5,29 +5,40 @@
         <form>
           <input
             type="search"
-            class="form-control search-bg"
+            class="form-control search-bg input-search"
             placeholder="search..."
           />
         </form>
       </div>
       <ul class="sidebar-menu">
-        <p class="text-bg text-uppercase mx-3">Invoices - 54</p>
+        <p class="text-bg text-uppercase mx-3">Invoices - {{ data.length }}</p>
         <li
           class="sidebar-menu-item border-b my-2"
           v-for="(d, i) in data"
           :key="i"
+          :class="[$route.fullPath.includes(d.guid) ? 'active' : '']"
         >
-          <div class="d-flex justify-content-between mx-3">
-            <div>
-              <p class="text-bg text-uppercase">INV. # - {{ d.id }}</p>
-              <p class="text-bg text-uppercase">
-                ITEMS - {{ JSON.parse(d.product_details).length }}
-              </p>
+          <router-link :to="{ name: 'invoice', params: { guid: d.guid } }">
+            <div class="d-flex justify-content-between mx-3">
+              <div class="item">
+                <p class="text-bg text-uppercase mb-3">INV. # - {{ d.id }}</p>
+                <p class="text-bg text-uppercase mb-3">
+                  ITEMS - {{ JSON.parse(d.product_details).length }}
+                </p>
+              </div>
+              <div>
+                <p class="text-bg text-uppercase mb-3">
+                  {{ getTime(d.created_at) }} -
+                  {{ dateTimeFromNow(d.created_at) }}
+                </p>
+              </div>
             </div>
-            <div>
-              <p class="text-bg text-uppercase">11:00 AM - today</p>
-              <p class="text-bg text-uppercase">
-                GHS
+            <div class="d-flex justify-content-between mx-3">
+              <p class="text-bg-fullname text-capitalize mb-3">
+                {{ d.full_name ? d.full_name : "Unknown" }}
+              </p>
+              <p class="text-bg text-uppercase mb-3 my-text">
+                ₹
                 {{
                   JSON.parse(d.product_details).reduce((acc, val) => {
                     return acc + val.price * val.quantity;
@@ -35,7 +46,7 @@
                 }}
               </p>
             </div>
-          </div>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -43,12 +54,21 @@
 </template>
 
 <script>
+import { formatTime, timeFromNow } from "@/utils/index";
 export default {
   name: "Sidebar",
   props: {
     data: {
       type: Array,
       required: true,
+    },
+  },
+  methods: {
+    getTime(date) {
+      return formatTime(date);
+    },
+    dateTimeFromNow(date) {
+      return timeFromNow(date);
     },
   },
 };

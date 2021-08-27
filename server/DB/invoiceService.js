@@ -11,7 +11,14 @@ class InvoiceService {
         "INSERT INTO invoices  (product_details,customer_id,tax,discount,guid,created_at) VALUES (?,?,?,?,?,?);";
       sql.query(
         query,
-        [JSON.stringify(product_details), customer_id, tax, discount, guid, created_at],
+        [
+          JSON.stringify(product_details),
+          customer_id,
+          tax,
+          discount,
+          guid,
+          created_at,
+        ],
         (err, result) => {
           if (err) reject(err);
           resolve(result);
@@ -31,7 +38,8 @@ class InvoiceService {
 
   static async getAllInvoices() {
     const response = await new Promise((resolve, reject) => {
-      const query = "SELECT * FROM invoices;";
+      const query =
+        "SELECT invoices.id, invoices.product_details, invoices.discount, invoices.tax, invoices.guid, invoices.created_at, customers.full_name, customers.email_id FROM invoices LEFT join customers  on customers.id = invoices.customer_id;";
       sql.query(query, (err, results) => {
         if (err) reject(new Error(err.message));
         resolve(results);
@@ -42,7 +50,8 @@ class InvoiceService {
 
   static async getInvoice(guid) {
     const response = await new Promise((resolve, reject) => {
-      const query = "SELECT * FROM invoices WHERE guid = ?;";
+      const query =
+        "SELECT invoices.id, invoices.product_details, invoices.discount,invoices.guid, invoices.tax, invoices.created_at, customers.full_name, customers.email_id FROM invoices LEFT join customers  on customers.id = invoices.customer_id WHERE invoices.guid = ?;";
       sql.query(query, [guid], (err, results) => {
         if (err) reject(new Error(err.message));
         resolve(results);
