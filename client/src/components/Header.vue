@@ -43,8 +43,8 @@
               <button
                 type="button"
                 class="btn-close-modal"
-                data-bs-dismiss="modal"
                 aria-label="Close"
+                @click="closeCustomerModal"
               ></button>
             </div>
             <div class="modal-header border-bottom-0 pt-2">
@@ -164,7 +164,7 @@
             <button
               type="button"
               class="btn-close-modal"
-              data-bs-dismiss="modal"
+              @click="closeInvoiceModal"
               aria-label="Close"
             ></button>
           </div>
@@ -183,7 +183,10 @@
                     {{ customer ? customer.email_id : "" }}
                   </p>
                 </div>
-                <button class="btn btn-edit mb-0 ms-2"></button>
+                <button
+                  class="btn btn-edit mb-0 ms-2"
+                  @click="openCustomerModalAgain"
+                ></button>
               </div>
             </div>
           </div>
@@ -445,6 +448,11 @@ export default {
       const myModal = new Modal(document.getElementById("customerModal"));
       myModal.show();
     },
+    openCustomerModalAgain() {
+      const myModal = new Modal(document.getElementById("customerModal"));
+      myModal.show();
+      this.closeInvoiceModal();
+    },
 
     openInvoiceModal() {
       const myModal = new Modal(document.getElementById("invoiceModal"));
@@ -456,12 +464,27 @@ export default {
       const myModal = document.getElementById("customerModal");
       const modal = Modal.getInstance(myModal);
       modal.hide();
+      this.form.full_name = "";
+      this.form.phone_number = "";
+      this.form.address = "";
+      this.form.email_id = "";
+      this.form.pincode = "";
     },
 
     closeInvoiceModal() {
       const myModal = document.getElementById("invoiceModal");
       const modal = Modal.getInstance(myModal);
       modal.hide();
+      this.invoiceForm.product_details = [
+        {
+          item: "",
+          quantity: 0.0,
+          price: 0.0,
+        },
+      ];
+      this.invoiceForm.tax = 0.0;
+      this.invoiceForm.address = 0.0;
+      this.customer = null;
     },
 
     //add item
@@ -494,9 +517,7 @@ export default {
           payload
         );
         this.customer = res.data;
-        const myModal = new Modal(document.getElementById("invoiceModal"));
-        myModal.show();
-        this.closeCustomerModal();
+        this.openInvoiceModal();
       } catch (error) {
         console.log(error);
       } finally {
@@ -507,7 +528,7 @@ export default {
     // submit invoice data
     async submitInvoiceDetails() {
       try {
-        this.isSubmittingCustomer = true;
+        this.isSubmittingInvoice = true;
         const payload = {
           product_details: this.invoiceForm.product_details,
           customer_id: this.customer?.id ?? null,

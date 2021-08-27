@@ -1,6 +1,6 @@
 const uuid = require("uuid");
 const sql = require("./connectionService");
-
+const CustomerService = require("../db/customerService");
 class InvoiceService {
   static async addInvoice(request) {
     const created_at = new Date();
@@ -25,10 +25,18 @@ class InvoiceService {
         }
       );
     });
+
+    // find customer
+    let customerObject = null;
+    if (customer_id) {
+      const customer = await CustomerService.getAllCustomers();
+      customerObject = customer.find((item) => item.id === customer_id) ?? {};
+    }
+
     return {
       id: data.insertId,
       product_details,
-      customer_id,
+      customer: customerObject,
       tax,
       discount,
       guid,

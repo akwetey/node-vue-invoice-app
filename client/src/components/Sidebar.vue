@@ -35,14 +35,24 @@
             </div>
             <div class="d-flex justify-content-between mx-3">
               <p class="text-bg-fullname text-capitalize mb-3">
-                {{ d.full_name ? d.full_name : "Unknown" }}
+                {{
+                  d.full_name
+                    ? d.full_name
+                    : d.customer
+                    ? d.customer.full_name
+                    : "Unknown"
+                }}
               </p>
               <p class="text-bg text-uppercase mb-3 my-text">
                 ₹
                 {{
-                  JSON.parse(d.product_details).reduce((acc, val) => {
-                    return acc + val.price * val.quantity;
-                  }, 0)
+                  JSON.parse(d.product_details)
+                    .reduce((acc, val) => {
+                      return acc + val.price * val.quantity;
+                    }, 0)
+                    .toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                    })
                 }}
               </p>
             </div>
